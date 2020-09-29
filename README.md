@@ -12,6 +12,14 @@ multiple times.
 
 Dotfiles uses [Dotbot][dotbot] for installation.
 
+References
+----------
+
+* https://github.com/anishathalye/dotfiles
+* https://github.com/anishathalye/dotfiles-local
+* https://github.com/anishathalye/dotbot
+* https://www.anishathalye.com/2014/08/03/managing-your-dotfiles/
+
 Making Local Customizations
 ---------------------------
 
