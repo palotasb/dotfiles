@@ -1,9 +1,9 @@
 # Dotfiles
 
 ```shell
-$ git clone https://github.com/palotasb/dotfiles.git ~/.dotfiles
-$ cd ~/.dotfiles
-$ ./install
+git clone https://github.com/palotasb/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+./install
 ```
 
 After cloning this repo, run `install` to automatically set up the development
