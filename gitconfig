@@ -1,23 +1,56 @@
-[user]
-	name = Palotás Boldizsár
-	email = boldizsar.palotas@gmail.com
+# https://git-scm.com/docs/git-config
+
+[alias]
+	credit = shortlog -sn
+	graph-line = log --graph --format=line # graph
+	graph-detail = log --graph --format=detail # graph detail
+	graph-line-all = log --graph --format=line --all # graph all
+	graph-all = log --graph --format=detail --all # graph all in detail
+
+
+[color]
+	ui = auto
+
+[color "grep"]
+	match = cyan bold
+	selected = blue
+	context = normal
+	filename = magenta
+	linenumber = green
+	separator = yellow
+	function = blue
+
 [core]
-	excludesfile = /Users/palotasb/.gitignore_global
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[filter "media"]
-	clean = git media clean %f
-	smudge = git media smudge %f
-	required = true
-[push]
-	default = simple
+	excludesfile = ~/.gitignore_global
+
+[credential]
+	helper = cache --timeout=3600
+
+[diff]
+	mnemonicPrefix = true
+	wordRegex = "[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+"
+
 [filter "lfs"]
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
-[commit]
-	template = /Users/palotasb/.stCommitMsg
+
+[merge]
+	defaultToUpstream = true
+	tool = vimdiff
+
+[pretty]
+	line = "%C(auto)%h %<|(60,trunc)%s %C(green)%ad%C(auto)%d"
+	detail = "%C(auto)%h %s%n  %C(yellow)by %C(blue)%an %C(magenta)<%ae> [%G?] %C(green)%ad%n %C(auto)%d%n"
+
+[push]
+	default = simple
+
+[user]
+	name = Palotás Boldizsár
+	email = boldizsar.palotas@gmail.com
+	useConfigOnly = true
+
+# Allow local customizations in the .gitconfig_local file
+[include]
+	path = ~/.gitconfig_local

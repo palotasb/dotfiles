@@ -6,16 +6,13 @@ if [ -f ~/.shell_local_before ]; then
     source ~/.shell_local_before
 fi
 
-# Allow local customizations in the ~/.zshrc_local_before file
-if [ -f ~/.zshrc_local_before ]; then
-    source ~/.zshrc_local_before
+# Allow local customizations in the ~/.bashrc_local_before file
+if [ -f ~/.bashrc_local_before ]; then
+    source ~/.bashrc_local_before
 fi
 
-# External plugins (initialized before)
-source ~/.zsh/plugins_before.zsh
-
 # Settings
-source ~/.zsh/settings.zsh
+source ~/.bash/settings.bash
 
 # Bootstrap
 source ~/.shell/bootstrap.sh
@@ -27,17 +24,17 @@ source ~/.shell/external.sh
 source ~/.shell/aliases.sh
 
 # Custom prompt
-source ~/.zsh/prompt.zsh
+source ~/.bash/prompt.bash
 
-# External plugins (initialized after)
-source ~/.zsh/plugins_after.zsh
+# Plugins
+source ~/.bash/plugins.bash
 
 # Allow local customizations in the ~/.shell_local_after file
 if [ -f ~/.shell_local_after ]; then
     source ~/.shell_local_after
 fi
 
-# Allow local customizations in the ~/.zshrc_local_after file
-if [ -f ~/.zshrc_local_after ]; then
-    source ~/.zshrc_local_after
+# Allow local customizations in the ~/.bashrc_local_after file
+if [ -f ~/.bashrc_local_after ]; then
+    source ~/.bashrc_local_after
 fi
