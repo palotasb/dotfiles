@@ -8,6 +8,9 @@ format = "[📁$lock_symbol]($lock_style) [$path]($style) "
 [hostname]
 ssh_only = false
 
+[status]
+disabled = false
+
 [username]
 format = "[$user]($style)@"
 show_always = true
