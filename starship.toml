@@ -1,9 +1,9 @@
 # https://starship.rs/config/
 
-add_newline = true
+add_newline = false
 
-[character]
-success_symbol = "[➜](bold green)"
+[directory]
+format = "[📁$lock_symbol]($lock_style) [$path]($style) "
 
 [hostname]
 ssh_only = false
