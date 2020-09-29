@@ -1,0 +1,13 @@
+# https://starship.rs/config/
+
+add_newline = true
+
+[character]
+success_symbol = "[➜](bold green)"
+
+[hostname]
+ssh_only = false
+
+[username]
+format = "[$user]($style)@"
+show_always = true
