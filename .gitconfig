@@ -2,6 +2,7 @@
 
 [alias]
 	s = "status"
+	st = "status"
 
 [color]
 	ui = auto
