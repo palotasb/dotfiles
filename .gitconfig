@@ -1,12 +1,7 @@
 # https://git-scm.com/docs/git-config
 
 [alias]
-	credit = shortlog -sn
-	graph-line = log --graph --format=line # graph
-	graph-detail = log --graph --format=detail # graph detail
-	graph-line-all = log --graph --format=line --all # graph all
-	graph-all = log --graph --format=detail --all # graph all in detail
-
+	s = "status"
 
 [color]
 	ui = auto
