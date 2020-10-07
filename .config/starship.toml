@@ -1,0 +1,19 @@
+# https://starship.rs/config/
+
+add_newline = false
+
+[directory]
+format = "[📁$lock_symbol]($lock_style) [$path]($style) "
+
+[git_branch]
+symbol = "⇅ "
+
+[hostname]
+ssh_only = false
+
+[status]
+disabled = false
+
+[username]
+format = "[$user]($style)@"
+show_always = true
