@@ -35,6 +35,11 @@
 ```shell
 git clone https://github.com/palotasb/dotfiles $HOME/.dotfiles
 cd $HOME/.dotfiles/
+
+# Back up old .dotfiles that we will overwrite
+git ls-files | \
+    xargs -I FILE sh -c "if [ -f "$HOME/FILE" ]; then echo "FILE"; fi" | \
+    xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=./.bak-\$DATE ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; echo \"FILE\""
 ```
 
 ## Initial setup
