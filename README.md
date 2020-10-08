@@ -40,6 +40,13 @@ cd $HOME/.dotfiles/
 git ls-files | \
     xargs -I FILE sh -c "if [ -f "$HOME/FILE" ]; then echo "FILE"; fi" | \
     xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=./.bak-\$DATE ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; echo \"FILE\""
+
+alias config="git --work-tree $HOME --git-dir $HOME/.dotfiles/.git"
+
+config config status.showUntrackedFiles no
+
+# Overwrite config with stored data
+config reset --hard
 ```
 
 ## Initial setup
