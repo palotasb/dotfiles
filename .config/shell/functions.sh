@@ -32,10 +32,14 @@ no_proxy_prepend() {
 
 # Git-based .dotfiles
 
+config-ls-files() {
+    git --work-tree $HOME/.dotfiles --git-dir $HOME/.dotfiles/.git ls-files
+}
+
 config-backup() {
-    git --work-tree $HOME/.dotfiles --git-dir $HOME/.dotfiles/.git ls-files | \
+    config-ls-files | \
         xargs -I FILE sh -c "if [ -f "$HOME/FILE" ]; then echo \"FILE\"; fi" | \
-        xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=./.bak-\$DATE ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; echo \"FILE\""
+        xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=./.bak-\$DATE ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; if [ \"$1\" != \"--quiet\" ] ; then echo \"FILE\" ; fi"
 }
 
 config-reset() {
@@ -47,9 +51,9 @@ config-reset() {
 
 config-sync() {
     if [ "$1" != "--no-backup" ] ; then
-        config-backup
+        config-backup --quiet
     fi
-    git --work-tree $HOME/.dotfiles --git-dir $HOME/.dotfiles/.git ls-files | \
+    config-ls-files | \
     xargs -I FILE sh -c "cp -a \"$HOME/.dotfiles/FILE\" \"$HOME/FILE\" ; echo \"FILE\""
 }
 
