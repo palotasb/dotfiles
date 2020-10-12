@@ -32,7 +32,7 @@ no_proxy_prepend() {
 
 # Git-based .dotfiles
 
-function config-backup() {
+config-backup() {
     git --work-tree $HOME/.dotfiles --git-dir $HOME/.dotfiles/.git ls-files | \
         xargs -I FILE sh -c "if [ -f "$HOME/FILE" ]; then echo \"FILE\"; fi" | \
         xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=./.bak-\$DATE ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; echo \"FILE\""
