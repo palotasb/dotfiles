@@ -34,9 +34,6 @@ no_proxy_prepend() {
 
 config-ls-files() {
     git --work-tree $HOME/.dotfiles --git-dir $HOME/.dotfiles/.git ls-files
-    if [ -d $HOME/.dotfiles-local ] ; then
-        git --work-tree $HOME/.dotfiles-local --git-dir $HOME/.dotfiles-local/.git ls-files
-    fi
 }
 
 config-backup() {

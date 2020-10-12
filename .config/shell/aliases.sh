@@ -5,7 +5,7 @@ fi
 # Git-based dotfiles
 alias config="git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME"
 alias config-source="config-sync-shell \$0"
-alias config-local="git --work-tree $HOME --git-dir $HOME/.dotfiles/.git"
+alias config-local="git --work-tree $HOME --git-dir $HOME/.dotfiles-local/.git"
 
 # Use colors in coreutils utilities output
 
