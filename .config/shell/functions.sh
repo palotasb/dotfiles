@@ -39,14 +39,14 @@ function config-backup() {
 }
 
 config-reset() {
-    if [ $1 != "--no-backup" ] ; then
+    if [ "$1" != "--no-backup" ] ; then
         config-backup
     fi
     config reset --hard
 }
 
 config-sync() {
-    if [ $1 != "--no-backup" ] ; then
+    if [ "$1" != "--no-backup" ] ; then
         config-backup
     fi
     git --work-tree $HOME/.dotfiles --git-dir $HOME/.dotfiles/.git ls-files | \
