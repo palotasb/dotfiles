@@ -61,7 +61,7 @@ config-source-shell() {
     if ( echo $1 | grep -qE "(^\-?|/)bash$" ) ; then
         echo source $HOME/.bashrc
         source $HOME/.bashrc
-    elif ( echo $1 | grep -qE "(^|/)zsh$" ) ; then
+    elif ( echo $1 | grep -qE "(^\-?|/)zsh$" ) ; then
         echo source $HOME/.zshrc
         source $HOME/.zshrc
     else
