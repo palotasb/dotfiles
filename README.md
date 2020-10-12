@@ -59,7 +59,7 @@ config config status.showUntrackedFiles no
 config reset --hard
 
 # Source into current bash or zsh shell
-if ( echo $0 | grep -qE "(^|/)bash$" ) ; then
+if ( echo $0 | grep -qE "(^\-?|/)bash$" ) ; then
   source $HOME/.bashrc
 elif ( echo $0 | grep -qE "(^|/)bash$" ) ; then
   source $HOME/.zshrc
