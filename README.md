@@ -32,21 +32,44 @@
 
 ## Setup on existing machines
 
+Get prerequisites:
+
 ```shell
+apt update -y && apt install -y git curl
+```
+
+Setup:
+
+```shell
+# Get .dotfiles
 git clone https://github.com/palotasb/dotfiles $HOME/.dotfiles
-cd $HOME/.dotfiles/
 
 # Back up old .dotfiles that we will overwrite
-git ls-files | \
+git --work-tree $HOME/.dotfiles --git-dir $HOME/.dotfiles/.git ls-files | \
     xargs -I FILE sh -c "if [ -f "$HOME/FILE" ]; then echo "FILE"; fi" | \
     xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=./.bak-\$DATE ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; echo \"FILE\""
 
+# Use global `config` alias to manage .dotfiles in $HOME
 alias config="git --work-tree $HOME --git-dir $HOME/.dotfiles/.git"
 
+# Ignore all other files in $HOME
 config config status.showUntrackedFiles no
 
 # Overwrite config with stored data
 config reset --hard
+
+# Source into current bash or zsh shell
+if ( echo $0 | grep -qE "(^|/)bash$" ) ; then
+  source $HOME/.bashrc
+elif ( echo $0 | grep -qE "(^|/)bash$" ) ; then
+  source $HOME/.zshrc
+fi
+
+# Install https://starship.rs/ for custom prompt
+install-starship
+
+#
+config-source
 ```
 
 ## Initial setup

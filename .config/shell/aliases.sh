@@ -4,7 +4,6 @@ fi
 
 # Git-based dotfiles
 alias config="git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME"
-alias config-sync="config reset --hard"
 
 # Use colors in coreutils utilities output
 
