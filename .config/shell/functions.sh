@@ -34,6 +34,9 @@ no_proxy_prepend() {
 
 config-ls-files() {
     git --work-tree $HOME/.dotfiles --git-dir $HOME/.dotfiles/.git ls-files
+    if [ -d $HOME/.dotfiles-local ] ; then
+        git --work-tree $HOME/.dotfiles-local --git-dir $HOME/.dotfiles-local/.git ls-files
+    fi
 }
 
 config-backup() {
@@ -57,11 +60,11 @@ config-sync() {
     xargs -I FILE sh -c "cp -a \"$HOME/.dotfiles/FILE\" \"$HOME/FILE\" ; echo \"FILE\""
 }
 
-config-source() {
-    if ( echo $0 | grep -qE "(^\-?|/)bash$" ) ; then
+config-source-shell() {
+    if ( echo $1 | grep -qE "(^\-?|/)bash$" ) ; then
         echo source $HOME/.bashrc
         source $HOME/.bashrc
-    elif ( echo $0 | grep -qE "(^|/)zsh$" ) ; then
+    elif ( echo $1 | grep -qE "(^|/)zsh$" ) ; then
         echo source $HOME/.zshrc
         source $HOME/.zshrc
     else

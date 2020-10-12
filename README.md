@@ -73,3 +73,21 @@ config-source
 ```
 
 ## Initial setup
+
+```shell
+git init $HOME/.dotfiles
+alias config="git --work-tree $HOME --git-dir $HOME/.dotfiles/.git"
+```
+
+## Local overrides initial setup
+
+```shell
+git init $HOME/.dotfiles-local
+alias config-local="git --work-tree $HOME --git-dir $HOME/.dotfiles-local/.git"
+config-local config status.showUntrackedFiles no
+```
+
+## References
+
+* [Ask HN: What do you use to manage dotfiles?](https://news.ycombinator.com/item?id=11070797)
+* [The best way to store your dotfiles: A bare Git repository](https://www.atlassian.com/git/tutorials/dotfiles)
