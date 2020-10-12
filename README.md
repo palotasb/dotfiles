@@ -47,7 +47,7 @@ git clone https://github.com/palotasb/dotfiles $HOME/.dotfiles
 # Back up old .dotfiles that we will overwrite
 git --work-tree $HOME/.dotfiles --git-dir $HOME/.dotfiles/.git ls-files | \
     xargs -I FILE sh -c "if [ -f "$HOME/FILE" ]; then echo "FILE"; fi" | \
-    xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=./.bak-\$DATE ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; echo \"FILE\""
+    xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=$HOME/.dotfiles/.bak-\$DATE ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; echo \"FILE\""
 
 # Use global `config` alias to manage .dotfiles in $HOME
 alias config="git --work-tree $HOME --git-dir $HOME/.dotfiles/.git"

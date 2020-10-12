@@ -39,7 +39,7 @@ config-ls-files() {
 config-backup() {
     config-ls-files | \
         xargs -I FILE sh -c "if [ -f "$HOME/FILE" ]; then echo \"FILE\"; fi" | \
-        xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=./.bak-\$DATE ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; if [ \"$1\" != \"--quiet\" ] ; then echo \"FILE\" ; fi"
+        xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=$HOME/.dotfiles/.bak-\$DATE ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; if [ \"$1\" != \"--quiet\" ] ; then echo \"FILE\" ; fi"
 }
 
 config-reset() {
