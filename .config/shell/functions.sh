@@ -58,11 +58,13 @@ config-sync() {
 }
 
 config-source() {
-    if ( echo $0 | grep -qE "(^|/)bash$" ) ; then
+    if ( echo $0 | grep -qE "(^\-?|/)bash$" ) ; then
         echo source $HOME/.bashrc
         source $HOME/.bashrc
     elif ( echo $0 | grep -qE "(^|/)zsh$" ) ; then
         echo source $HOME/.zshrc
         source $HOME/.zshrc
+    else
+        exit 1
     fi
 }
