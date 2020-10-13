@@ -6,7 +6,7 @@ add_newline = false
 format = "[📁$lock_symbol]($lock_style) [$path]($style) "
 
 [git_branch]
-symbol = "⇅ "
+symbol = "🔸 "
 
 [hostname]
 ssh_only = false
