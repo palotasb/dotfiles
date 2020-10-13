@@ -4,6 +4,8 @@ add_newline = false
 
 [directory]
 format = "[📁$lock_symbol]($lock_style) [$path]($style) "
+truncation_length = 0
+truncate_to_repo = false
 
 [git_branch]
 symbol = "🔸 "
