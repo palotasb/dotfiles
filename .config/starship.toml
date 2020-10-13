@@ -13,6 +13,7 @@ ssh_only = false
 
 [status]
 disabled = false
+symbol = "×"
 
 [username]
 format = "[$user]($style)@"
