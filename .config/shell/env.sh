@@ -29,6 +29,5 @@ if which vim >/dev/null ; then
     export EDITOR=vim
 fi
 
-# Do not clear screen (-X) and allow control chars (colors) to pass thru
-export LESS=-Xr
-
+# Allow control chars (colors) to pass thru
+export LESS=-R
