@@ -26,9 +26,17 @@ export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 # Other
 # =====
 
+# Preferred editor: vim
 if which vim >/dev/null ; then
     export EDITOR=vim
 fi
 
 # Allow control chars (colors) to pass thru
 export LESS=-R
+
+# Docker-machine on Mac
+if which docker-machine >/dev/null ; then
+    if [ "$(docker-machine status)" = "Running" ] ; then
+        eval $(docker-machine env)
+    fi
+fi
