@@ -1,6 +1,57 @@
 # https://starship.rs/config/
 
 add_newline = false
+format = """
+${custom.isroot}\
+${custom.username}\
+$hostname\
+$shlvl\
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$dart\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$ruby\
+$rust\
+$swift\
+$terraform\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$aws\
+$gcloud\
+$env_var\
+$crystal\
+$cmd_duration\
+$custom\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$character"""
 
 [directory]
 format = "[📁$lock_symbol]($lock_style) [$path]($style) "
@@ -17,6 +68,12 @@ ssh_only = false
 disabled = false
 symbol = "×"
 
-[username]
-format = "[$user]($style)@"
-show_always = true
+[custom.isroot]
+command = ""
+when = "test $(id -u) -eq 0"
+symbol = "❗"
+
+[custom.username]
+command = "echo $USERX | grep -qE . || id -un"
+when = "true"
+format = "[$symbol$output]($style)@"
