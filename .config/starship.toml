@@ -81,5 +81,5 @@ when = "true"
 format = "[$symbol$output]($style)@"
 
 [custom.in_docker]
-command = "echo ' (container)'"
+command = "echo -n '[container]'"
 when = "test -f /.dockerenv"
