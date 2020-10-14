@@ -54,7 +54,7 @@ $status\
 $character"""
 
 [directory]
-format = "[📁$lock_symbol]($lock_style) [$path]($style) "
+format = "[$lock_symbol]($lock_style) [$path]($style) "
 truncation_length = 0
 truncate_to_repo = false
 
@@ -63,6 +63,7 @@ symbol = "🔸 "
 
 [hostname]
 ssh_only = false
+style = "bold blue"
 
 [status]
 disabled = false
