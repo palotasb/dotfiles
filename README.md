@@ -17,7 +17,7 @@
     * [`prompt.zsh`](.config/zsh/prompt.zsh): sets zsh prompt
     * [`settings.zsh`](.config/zsh/settings.zsh): sets zsh-specific settings 
   * [`starship.toml`](.config/starship.toml):
-    [Starhsip](https://starship.rs/) shell prompt config
+    [Starship](https://starship.rs/) shell prompt config
 * [`.local/bin/`](.local/bin/): custom shell scripts added to the `$PATH`
   * [`install-starship`](.local/bin/install-starship): Starship prompt installer
 * [`.bash_profile`](.bash_profile): sourced for login interactive bash
