@@ -5,6 +5,7 @@ format = """
 ${custom.isroot}\
 ${custom.username}\
 $hostname\
+${custom.in_docker}
 $shlvl\
 $kubernetes\
 $directory\
@@ -77,3 +78,7 @@ when = "test $(id -u) -eq 0"
 command = "echo $USERX | grep -qE . || id -un"
 when = "true"
 format = "[$symbol$output]($style)@"
+
+[custom.in_docker]
+command = "echo ' (container)'"
+when = "test -f /.dockerenv"
