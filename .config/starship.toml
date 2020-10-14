@@ -69,9 +69,8 @@ disabled = false
 symbol = "×"
 
 [custom.isroot]
-command = ""
+command = "echo ❗"
 when = "test $(id -u) -eq 0"
-symbol = "❗"
 
 [custom.username]
 command = "echo $USERX | grep -qE . || id -un"
