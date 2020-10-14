@@ -63,6 +63,7 @@ truncate_to_repo = false
 symbol = "🔸 "
 
 [hostname]
+format = "[$hostname]($style):"
 ssh_only = false
 style = "bold blue"
 
