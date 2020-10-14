@@ -16,7 +16,8 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 
 # Requiring an active virtual environment for pip
 # https://docs.python-guide.org/dev/pip-virtualenv/#requiring-an-active-virtual-environment-for-pip
-export PIP_REQUIRE_VIRTUALENV=true
+# Disabled because it complains when installing inside a Conda env
+# export PIP_REQUIRE_VIRTUALENV=true
 
 # Caching packages for future use
 # https://docs.python-guide.org/dev/pip-virtualenv/#caching-packages-for-future-use
