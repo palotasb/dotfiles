@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 
+# Usage:
+#   eval "$(curl -fsSL https://raw.githubusercontent.com/palotasb/dotfiles/master/.local/bin/setup-dotfiles)"
+# or:
+#   curl -fsSL https://raw.githubusercontent.com/palotasb/dotfiles/master/.local/bin/setup-dotfiles > setup-dotfiles
+#   . setup-dotfiles
+
 # Get .dotfiles
 git clone https://github.com/palotasb/dotfiles $HOME/.dotfiles
 
@@ -27,4 +33,5 @@ fi
 # Install https://starship.rs/ for custom prompt
 install-starship
 
+# Source into shell again (activate prompt)
 config-source
