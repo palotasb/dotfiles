@@ -33,13 +33,20 @@ no_proxy_prepend() {
 # Git-based .dotfiles
 
 config-ls-files() {
-    git --work-tree $HOME/.dotfiles --git-dir $HOME/.dotfiles/.git ls-files
+    git --work-tree "$HOME/.dotfiles${DOTFILES}" --git-dir "$HOME/.dotfiles${DOTFILES}/.git" ls-files
 }
 
 config-backup() {
-    config-ls-files | \
-        xargs -I FILE sh -c "if [ -f "$HOME/FILE" ]; then echo \"FILE\"; fi" | \
-        xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=$HOME/.dotfiles/.bak-\$DATE ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; if [ \"$1\" != \"--quiet\" ] ; then echo \"FILE\" ; fi"
+    __DF_DATE=$(date +%Y-%m-%d-%H-%M-%S)
+    __DF_DIR="$HOME/.dotfiles${DOTFILES}/.bak-${__DF_DATE}"
+    __DF_FILES="$(config-ls-files)"
+    __DF_FILES=$(echo ${__DF_FILES} | xargs -I __F sh -c "if [ -f "$HOME/__F" ]; then echo \"__F\"; fi")
+    echo ${__DF_FILES} | xargs -I __F echo "${__DF_DIR}/__F" | xargs -J __F mkdir -p __F
+    echo ${__DF_FILES} | xargs -I __F cp -a "$HOME/__F" "${__DF_DIR}/__F"
+    if [ "$1" != --quiet ] ; then
+        echo ${__DF_FILES}
+    fi
+    unset __DF_FILES ; unset __DF_DIR ; unset __DF_DATE
 }
 
 config-reset() {
@@ -54,7 +61,7 @@ config-sync() {
         config-backup --quiet
     fi
     config-ls-files | \
-    xargs -I FILE sh -c "cp -a \"$HOME/.dotfiles/FILE\" \"$HOME/FILE\" ; echo \"FILE\""
+    xargs -I __F sh -c "cp -a \"$HOME/.dotfiles${DOTFILES}/__F\" \"$HOME/__F\" ; echo \"__F\""
 }
 
 config-source-shell() {
