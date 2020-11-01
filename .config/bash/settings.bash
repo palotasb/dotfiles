@@ -25,7 +25,7 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   elif [ -f  /usr/local/etc/bash_completion ]; then  # brew install bash-completion
-    . /etc/bash_completion
+    . /usr/local/etc/bash_completion
   fi
 fi
 
