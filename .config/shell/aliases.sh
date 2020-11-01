@@ -21,3 +21,7 @@ alias l='ls'
 # Aliases to protect against overwriting
 alias cp='cp -i'
 alias mv='mv -i'
+
+if [ -f ~/.config/shell/aliases_override.sh ]; then
+    source ~/.config/shell/aliases_override.sh
+fi
