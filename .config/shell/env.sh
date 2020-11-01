@@ -35,8 +35,10 @@ fi
 export LESS=-R
 
 # Docker-machine on Mac
-if which docker-machine >/dev/null ; then
-    if [ "$(docker-machine status)" = "Running" ] ; then
+if which docker-machine >/dev/null 2>&1; then
+    [ "$DEBUG" != "" ] && echo "docker-machine exists, getting status"
+    if [ "$(docker-machine status 2>/dev/null)" = "Running" ] ; then
+        [ "$DEBUG" != "" ] && echo "docker-machine status running, setting env"
         eval $(docker-machine env)
     fi
 fi
