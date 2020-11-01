@@ -37,3 +37,6 @@ fi
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
+
+# Disable deprecation warning on Mac OS
+export BASH_SILENCE_DEPRECATION_WARNING=1
