@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 # PATH
 
 path_remove() {
@@ -66,11 +68,11 @@ config-sync() {
 
 config-source-shell() {
     if ( echo $1 | grep -qE "(^\-?|/)bash$" ) ; then
-        echo source $HOME/.bashrc
-        source $HOME/.bashrc
+        echo . $HOME/.bashrc
+        . $HOME/.bashrc
     elif ( echo $1 | grep -qE "(^\-?|/)zsh$" ) ; then
-        echo source $HOME/.zshrc
-        source $HOME/.zshrc
+        echo . $HOME/.zshrc
+        . $HOME/.zshrc
     else
         exit 1
     fi

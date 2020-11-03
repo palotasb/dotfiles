@@ -1,8 +1,10 @@
+#!/usr/bin/env sh
+
 # Functions
-source ~/.config/shell/functions.sh
+. ~/.config/shell/functions.sh
 
 # Aliases
-source ~/.config/shell/aliases.sh
+. ~/.config/shell/aliases.sh
 
 # External settings
-source ~/.config/shell/env.sh
+. ~/.config/shell/env.sh

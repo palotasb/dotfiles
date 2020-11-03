@@ -1,7 +1,8 @@
-if [ -f ~/.config/bash/plugins_local.bash ]; then
-    source ~/.config/bash/plugins_local.bash
-fi
+#!/usr/bin/env bash
 
+if [ -f ~/.config/bash/plugins_local.bash ]; then
+    . ~/.config/bash/plugins_local.bash
+fi
 
 # Conda
 

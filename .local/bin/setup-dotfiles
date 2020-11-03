@@ -7,15 +7,15 @@
 #   . setup-dotfiles
 
 # Get .dotfiles
-git clone https://github.com/palotasb/dotfiles $HOME/.dotfiles
+git clone https://github.com/palotasb/dotfiles "$HOME/.dotfiles"
 
 # Back up old .dotfiles that we will overwrite
-git --work-tree $HOME/.dotfiles --git-dir $HOME/.dotfiles/.git ls-files | \
-    xargs -I FILE sh -c "if [ -f "$HOME/FILE" ]; then echo "FILE"; fi" | \
-    xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=$HOME/.dotfiles/.bak-\$DATE ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; echo \"FILE\""
+git --work-tree "$HOME/.dotfiles" --git-dir "$HOME/.dotfiles/.git" ls-files | \
+    xargs -I FILE sh -c "if [ -f \"$HOME/FILE\" ]; then echo \"FILE\"; fi" | \
+    xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=\"$HOME/.dotfiles/.bak-\$DATE\" ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; echo \"FILE\""
 
 # Use global `config` alias to manage .dotfiles in $HOME
-alias config="git --work-tree $HOME --git-dir $HOME/.dotfiles/.git"
+alias config="git --work-tree \"\$HOME\" --git-dir \"\$HOME/.dotfiles/.git\""
 
 # Ignore all other files in $HOME
 config config status.showUntrackedFiles no
@@ -24,10 +24,10 @@ config config status.showUntrackedFiles no
 config reset --hard
 
 # Source into current bash or zsh shell
-if ( echo $0 | grep -qE "(^\-?|/)bash$" ) ; then
-  source $HOME/.bashrc
-elif ( echo $0 | grep -qE "(^\-?|/)bash$" ) ; then
-  source $HOME/.zshrc
+if ( echo "$0" | grep -qE "(^\-?|/)bash$" ) ; then
+  . "$HOME/.bashrc"
+elif ( echo "$0" | grep -qE "(^\-?|/)bash$" ) ; then
+  . "$HOME/.zshrc"
 fi
 
 # Install https://starship.rs/ for custom prompt

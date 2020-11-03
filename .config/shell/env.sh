@@ -1,5 +1,7 @@
+#!/usr/bin/env sh
+
 if [ -f ~/.config/shell/env_local.sh ]; then
-    source ~/.config/shell/env_local.sh
+    . ~/.config/shell/env_local.sh
 fi
 
 # $PATH
