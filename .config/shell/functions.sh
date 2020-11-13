@@ -34,6 +34,13 @@ no_proxy_prepend() {
 
 # Git-based .dotfiles
 
+config-clone() {
+    DOTFILES_REPO="$1"
+    DOTFILES_BRANCH="$2"
+    DOTFILES_DIR="$3"
+    git clone "$DOTFILES_REPO" --branch "$DOTFILES_BRANCH" "$DOTFILES_DIR"
+}
+
 config-backup() {
     timestamp=$(date +%Y-%m-%d-%H-%M-%S)
     dir="$HOME/.dotfiles${DOTFILES}/.bak-${timestamp}"
