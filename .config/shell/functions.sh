@@ -38,7 +38,7 @@ config-setup() {
     DOTFILES_REPO="$1"
     DOTFILES_BRANCH="$2"
     DOTFILES="-$DOTFILES_BRANCH"
-    git clone "$DOTFILES_REPO" --branch "$DOTFILES_BRANCH" "$DOTFILES_DIR"
+    git clone "$DOTFILES_REPO" --branch "$DOTFILES_BRANCH" "$HOME/.dotfiles$DOTFILES"
     config config status.showUntrackedFiles no
     config-backup
     config-sync
