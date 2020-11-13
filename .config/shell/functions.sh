@@ -83,14 +83,17 @@ config-sync() {
     xargs -I __F sh -c "cp -a \"$HOME/.dotfiles${DOTFILES}/__F\" \"$HOME/__F\" ; echo \"__F\""
 }
 
-config-source() {
-    if ( echo $0 | grep -qE "(^\-?|/)bash$" ) ; then
+config-source-shell() {
+    if ( echo "$1" | grep -qE "(^\-?|/)bash$" ) ; then
         echo . $HOME/.bashrc
         . $HOME/.bashrc
-    elif ( echo $0 | grep -qE "(^\-?|/)zsh$" ) ; then
+    elif ( echo "$1" | grep -qE "(^\-?|/)zsh$" ) ; then
         echo . $HOME/.zshrc
         . $HOME/.zshrc
     else
-        exit 1
+        echo "Unrecognized shell $1"
+        return 1
     fi
 }
+
+alias config-source="config-source-shell \$0"
