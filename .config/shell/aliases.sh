@@ -5,7 +5,8 @@ if [ -f ~/.config/shell/aliases_local.sh ]; then
 fi
 
 # Git-based dotfiles
-alias config="git --git-dir=\"\$HOME/.dotfiles/.git\" --work-tree=\"\$HOME\""
+alias config="git --git-dir=\"\$HOME/.dotfiles\$DOTFILES/.git\" --work-tree=\"\$HOME\""
+alias config-repo="git --git-dir=\"\$HOME/.dotfiles\$DOTFILES/.git\" --work-tree=\"\$HOME/.dotfiles\$DOTFILES/\""
 alias config-source="config-source-shell \$0"
 alias config-local="git --work-tree \"\$HOME\" --git-dir \"\$HOME/.dotfiles\${DOTFILES:--local}/.git\""
 

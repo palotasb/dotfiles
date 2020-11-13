@@ -7,15 +7,25 @@
 #   . setup-dotfiles
 
 # Get .dotfiles
-git clone https://github.com/palotasb/dotfiles "$HOME/.dotfiles"
-
-# Back up old .dotfiles that we will overwrite
-git --work-tree "$HOME/.dotfiles" --git-dir "$HOME/.dotfiles/.git" ls-files | \
-    xargs -I FILE sh -c "if [ -f \"$HOME/FILE\" ]; then echo \"FILE\"; fi" | \
-    xargs -I FILE sh -c "DATE=$(date +%Y-%m-%d-%H-%M-%S) ; DIR=\"$HOME/.dotfiles/.bak-\$DATE\" ; mkdir -p \$(dirname \"\$DIR/FILE\") ; cp -a \"$HOME/FILE\" \"\$DIR/FILE\" ; echo \"FILE\""
+git clone https://github.com/palotasb/dotfiles --branch "${DOTFILES:-master}" "$HOME/.dotfiles$DOTFILES"
 
 # Use global `config` alias to manage .dotfiles in $HOME
-alias config="git --work-tree \"\$HOME\" --git-dir \"\$HOME/.dotfiles/.git\""
+# Sync with same alias in .config/shell/alias.sh
+alias config="git --git-dir=\"\$HOME/.dotfiles\$DOTFILES/.git\" --work-tree=\"\$HOME\""
+alias config-repo="git --git-dir=\"\$HOME/.dotfiles\$DOTFILES/.git\" --work-tree=\"\$HOME/.dotfiles\$DOTFILES/\""
+
+# Back up old .dotfiles that we will overwrite
+# Sync with config-backup from .config/shell/functions.sh
+timestamp=$(date +%Y-%m-%d-%H-%M-%S)
+dir="$HOME/.dotfiles${DOTFILES}/.bak-${timestamp}"
+files=$(config-repo ls-files | xargs -d ' ' -I % echo %)
+files=$(echo "${files}" | xargs -I  __F sh -c "if [ -f \"$HOME/__F\" ]; then echo \"__F\"; fi")
+echo "${files}" | xargs -I __F echo "${dir}/__F" | xargs -I __F mkdir -p __F
+echo "${files}" | xargs -I __F cp -a "$HOME/__F" "${dir}/__F"
+if [ "$1" != --quiet ] ; then
+    echo "${files}"
+fi
+unset files ; unset dir ; unset timestamp
 
 # Ignore all other files in $HOME
 config config status.showUntrackedFiles no
