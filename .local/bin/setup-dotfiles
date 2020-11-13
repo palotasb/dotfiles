@@ -7,7 +7,7 @@
 #   . setup-dotfiles
 
 # Get .dotfiles
-git clone https://github.com/palotasb/dotfiles --branch "${DOTFILES:-master}" "$HOME/.dotfiles$DOTFILES"
+git clone "${DOTFILES_REPO:-https://github.com/palotasb/dotfiles}" --branch "${DOTFILES:-master}" "$HOME/.dotfiles$DOTFILES"
 
 # Use global `config` alias to manage .dotfiles in $HOME
 # Sync with same alias in .config/shell/alias.sh
