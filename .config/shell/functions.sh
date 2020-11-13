@@ -43,7 +43,7 @@ config-backup() {
     __DF_DIR="$HOME/.dotfiles${DOTFILES}/.bak-${__DF_DATE}"
     __DF_FILES="$(config-ls-files)"
     __DF_FILES=$(echo ${__DF_FILES} | xargs -I __F sh -c "if [ -f "$HOME/__F" ]; then echo \"__F\"; fi")
-    echo ${__DF_FILES} | xargs -I __F echo "${__DF_DIR}/__F" | xargs -J __F mkdir -p __F
+    echo ${__DF_FILES} | xargs -I __F echo "${__DF_DIR}/__F" | xargs -I __F mkdir -p __F
     echo ${__DF_FILES} | xargs -I __F cp -a "$HOME/__F" "${__DF_DIR}/__F"
     if [ "$1" != --quiet ] ; then
         echo ${__DF_FILES}
