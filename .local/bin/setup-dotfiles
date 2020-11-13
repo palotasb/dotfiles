@@ -31,7 +31,7 @@ elif ( echo "$0" | grep -qE "(^\-?|/)bash$" ) ; then
 fi
 
 # Install https://starship.rs/ for custom prompt
-install-starship
+install-starship --verbose --yes --bin-dir "$HOME/.local/bin"
 
 # Source into shell again (activate prompt)
 config-source
