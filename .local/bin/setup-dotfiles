@@ -20,7 +20,8 @@ git clone "$DOTFILES_REPO" --branch "$DOTFILES_BRANCH" "$DOTFILES_DIR"
 config config status.showUntrackedFiles no
 
 # Overwrite config with stored data
-config-sync
+config-backup
+config reset --hard
 
 # Source into current bash or zsh shell
 config-source
