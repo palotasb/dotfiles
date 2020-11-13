@@ -6,6 +6,9 @@
 #   curl -fsSL https://raw.githubusercontent.com/palotasb/dotfiles/master/.local/bin/setup-dotfiles > setup-dotfiles
 #   . setup-dotfiles
 
+set -e  # pipefail
+set -o errexit
+
 # Get .dotfiles
 git clone "${DOTFILES_REPO:-https://github.com/palotasb/dotfiles}" --branch "${DOTFILES:-master}" "$HOME/.dotfiles$DOTFILES"
 
