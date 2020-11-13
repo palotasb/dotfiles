@@ -58,7 +58,7 @@ config-setup() {
 config-backup() {
     timestamp=$(date +%Y-%m-%d-%H-%M-%S)
     dir="$HOME/.dotfiles${DOTFILES}/.bak-${timestamp}"
-    files=$(config-repo ls-files | xargs -d ' ' -I % echo %)
+    files=$(config-repo ls-files | xargs -I % echo %)
     files=$(echo "${files}" | xargs -I  __F sh -c "if [ -f \"$HOME/__F\" ]; then echo \"__F\"; fi")
     echo "${files}" | xargs -I __F echo "${dir}/__F" | xargs -I __F mkdir -p __F
     echo "${files}" | xargs -I __F cp -a "$HOME/__F" "${dir}/__F"
