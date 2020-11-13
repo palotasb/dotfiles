@@ -55,12 +55,12 @@ $status\
 $character"""
 
 [directory]
-format = "[$path]($style)[$lock_symbol]($lock_style)"
+format = "[$path]($style)[$lock_symbol]($lock_style) "
 truncation_length = 0
 truncate_to_repo = false
 
 [git_branch]
-format = " [$symbol$branch]($style) "
+format = "[$symbol$branch]($style) "
 symbol = "🔸 "
 
 [hostname]
