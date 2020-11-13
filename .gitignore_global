@@ -36,3 +36,6 @@ Thumbs.db
 
 # VS Code files
 .vscode/
+
+# Backup files
+.bak-*
