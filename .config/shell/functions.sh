@@ -35,6 +35,7 @@ no_proxy_prepend() {
 # Git-based .dotfiles
 
 config-setup() {
+    _DOTFILES="$DOTFILES"
     DOTFILES_REPO="$1"
     DOTFILES_BRANCH="$2"
     DOTFILES="-$DOTFILES_BRANCH"
@@ -43,6 +44,7 @@ config-setup() {
     config-backup
     config-sync
     config-source
+    DOTFILES="$_DOTFILES"
 }
 
 config-backup() {
