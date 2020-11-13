@@ -34,6 +34,14 @@ no_proxy_prepend() {
 
 # Git-based .dotfiles
 
+config() {
+    git --git-dir="$HOME/.dotfiles$DOTFILES/.git" --work-tree="$HOME" "$@"
+}
+
+config-repo() {
+    git --git-dir="$HOME/.dotfiles$DOTFILES/.git" --work-tree="$HOME/.dotfiles$DOTFILES/" "$@"
+}
+
 config-setup() {
     _DOTFILES="$DOTFILES"
     DOTFILES_REPO="$1"
@@ -75,11 +83,11 @@ config-sync() {
     xargs -I __F sh -c "cp -a \"$HOME/.dotfiles${DOTFILES}/__F\" \"$HOME/__F\" ; echo \"__F\""
 }
 
-config-source-shell() {
-    if ( echo $1 | grep -qE "(^\-?|/)bash$" ) ; then
+config-source() {
+    if ( echo $0 | grep -qE "(^\-?|/)bash$" ) ; then
         echo . $HOME/.bashrc
         . $HOME/.bashrc
-    elif ( echo $1 | grep -qE "(^\-?|/)zsh$" ) ; then
+    elif ( echo $0 | grep -qE "(^\-?|/)zsh$" ) ; then
         echo . $HOME/.zshrc
         . $HOME/.zshrc
     else
