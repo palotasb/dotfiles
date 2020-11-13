@@ -34,11 +34,15 @@ no_proxy_prepend() {
 
 # Git-based .dotfiles
 
-config-clone() {
+config-setup() {
     DOTFILES_REPO="$1"
     DOTFILES_BRANCH="$2"
-    DOTFILES_DIR="$3"
+    DOTFILES="-$DOTFILES_BRANCH"
     git clone "$DOTFILES_REPO" --branch "$DOTFILES_BRANCH" "$DOTFILES_DIR"
+    config config status.showUntrackedFiles no
+    config-backup
+    config-sync
+    config-source
 }
 
 config-backup() {
