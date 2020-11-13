@@ -2,15 +2,16 @@
 
 # Usage:
 #   eval "$(curl -fsSL https://raw.githubusercontent.com/palotasb/dotfiles/master/.local/bin/setup-dotfiles)"
+#   DOTFILES_REPO=https://example.com/dotfiles.git eval "$(curl -fsSL https://raw.githubusercontent.com/palotasb/dotfiles/master/.local/bin/setup-dotfiles)"
 # or:
 #   curl -fsSL https://raw.githubusercontent.com/palotasb/dotfiles/master/.local/bin/setup-dotfiles > setup-dotfiles
 #   . setup-dotfiles
 
-set -e  # pipefail
-set -o errexit
-
 # Get .dotfiles
-git clone "${DOTFILES_REPO:-https://github.com/palotasb/dotfiles}" --branch "${DOTFILES:-master}" "$HOME/.dotfiles$DOTFILES"
+DOTFILES_DIR="$HOME/.dotfiles$DOTFILES"
+DOTFILES_BRANCH="${DOTFILES_BRANCH:-${DOTFILES:-master}}"
+DOTFILES_REPO="${DOTFILES_REPO:-https://github.com/palotasb/dotfiles}"
+git clone "$DOTFILES_REPO" --branch "$DOTFILES_BRANCH" "$DOTFILES_DIR"
 
 # Use global `config` alias to manage .dotfiles in $HOME
 # Sync with same alias in .config/shell/alias.sh
