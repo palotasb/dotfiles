@@ -100,7 +100,7 @@ alias config-source="config-source-shell \$0"
 
 # Preview man pages
 
-if [ "$(uname)" == "Darwin" ] ; then
+if [ "$(uname)" = "Darwin" ] ; then
     pman() {
         man -t "$@" | open -f -a Preview;
     }
