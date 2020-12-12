@@ -8,12 +8,12 @@ path_remove() {
 
 path_append() {
     path_remove "$1"
-    PATH="${PATH:+"$PATH:"}$1"
+    PATH="${PATH:+$PATH:}$1"
 }
 
 path_prepend() {
     path_remove "$1"
-    PATH="$1${PATH:+":$PATH"}"
+    PATH="$1${PATH:+:$PATH}"
 }
 
 # no_proxy
@@ -24,12 +24,12 @@ no_proxy_remove() {
 
 no_proxy_append() {
     no_proxy_remove "$1"
-    no_proxy="${no_proxy:+"$no_proxy,"}$1"
+    no_proxy="${no_proxy:+$no_proxy,}$1"
 }
 
 no_proxy_prepend() {
     no_proxy_remove "$1"
-    no_proxy="$1${no_proxy:+",$no_proxy"}"
+    no_proxy="$1${no_proxy:+,$no_proxy}"
 }
 
 # Git-based .dotfiles
