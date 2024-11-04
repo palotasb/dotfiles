@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+set -eu
+
+account="${1?'Usage: homecfg aws iam-role-arn ACCOUNT ROLE'}"
+role="${2?'Usage: homecfg aws iam-role-arn ACCOUNT ROLE'}"
+
+printf "arn:aws:iam::%s:role/%s\n" "$account" "$role"

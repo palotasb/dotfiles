@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+set -eux
+
+[ -f /etc/hosts.allow ] && cp /etc/hosts.allow /etc/hosts
+nohup sh -c "sleep 300 ; hosts-ban" >/dev/null 2>&1 &

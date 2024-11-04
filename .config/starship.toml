@@ -1,14 +1,18 @@
 # https://starship.rs/config/
 
+"$schema" = 'https://starship.rs/config-schema.json'
+
 add_newline = false
 format = """
+${custom.homecfg}\
 ${custom.isroot}\
-${custom.username}\
+$username\
 $hostname\
 ${custom.in_docker}\
 $shlvl\
 $kubernetes\
 $directory\
+${custom.shell}\
 $git_branch\
 $git_commit\
 $git_state\
@@ -63,6 +67,10 @@ truncate_to_repo = false
 format = "[$symbol$branch]($style) "
 symbol = "🔸 "
 
+[username]
+show_always = true
+format = '[$user]($style)@'
+
 [hostname]
 format = "[$hostname]($style):"
 ssh_only = false
@@ -72,14 +80,19 @@ style = "bold blue"
 disabled = false
 symbol = "×"
 
+[custom.homecfg]
+command = 'echo "🏠 $HOMECFG"'
+when = '[ "$HOMECFG" != "$HOME/.config/homecfg" ]'
+style = "bright-black"
+
+[custom.shell]
+command = 'echo -n "[${0##*/}]"'
+when = '[ "$0" = "${0%zsh}" ]'
+style = "bright-black"
+
 [custom.isroot]
 command = "echo ❗"
 when = "test $(id -u) -eq 0"
-
-[custom.username]
-command = "echo $USERX | grep -qE . || id -un"
-when = "true"
-format = "[$symbol$output]($style)@"
 
 [custom.in_docker]
 command = "echo -n '[container]'"

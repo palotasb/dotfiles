@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+set -eu
+
+exec aws sts get-caller-identity "$@"

@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+set -eu
+
+if [ -z "${_HOMECFG_CMDS+y}" ] ; then
+    reset="$(tput sgr0 || printf '')"
+    green="$(tput setaf 2 || printf '')"
+    yellow="$(tput setaf 3 || printf '')"
+    underline="$(tput smul || printf '')"
+    nounderline="$(tput rmul || printf '')"
+    # the following is a clever hack - sorry! - to display a warning if 'homecfg-eval ...' is run directly,
+    # but not show any warning if either 'homecfg eval ...' (homecfg wrapper function sets $_HOMECFG_CMDS)
+    # or 'eval "$(homecfg-eval ...)"' is run (and both latter cases evaluate the parameters in the shell).
+    printf '%s ' ': '"'${yellow}"'Warning: The expression might not get evaluated by the shell.'
+    printf '%s ' 'Either call this command via the '"${underline}homecfg${nounderline}"' shell wrapper function, or'
+    printf '%s ' 'evaluate the whole command by wrapping it inside '"${underline}"'eval "$(...)"'"${nounderline}"
+    printf '%s\n' 'Hint: run '"${underline}"'eval "$( !! )"'"${nounderline} to re-run the last command.${reset}'"
+    _HOMECFG_CMDS=/dev/stdout
+fi
+
+if [ $# -eq 0 ] ; then
+    while IFS= read -r line ; do
+        echo "$line" >>"$_HOMECFG_CMDS"
+    done
+else
+    reset="$(tput sgr0 || printf '')"
+    green="$(tput setaf 2 || printf '')"
+    echo "${green}$*${reset}" >&2;
+    echo "$@" >>"$_HOMECFG_CMDS"
+fi

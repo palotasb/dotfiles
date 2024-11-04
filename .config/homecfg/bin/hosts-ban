@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+set -eux
+
+[ -f /etc/hosts.ban ] && cp /etc/hosts.ban /etc/hosts

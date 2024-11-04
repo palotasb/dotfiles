@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+set -eu
+
+export GIT_DIR="${HOMECFG_GIT:-$HOMECFG/.git}"
+export GIT_WORK_TREE="$HOME"
+exec git "$@"

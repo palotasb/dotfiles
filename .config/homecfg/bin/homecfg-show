@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+set -eu
+
+while [ "$#" -ge 1 ] ; do
+    envvar="$(printf '%s' "$1" | sed -n '/^[[:alpha:]][[:alnum:]_]*$/p')"
+    if [ -z "$envvar" ] ; then
+        echo "invalid envvar: $(printf '%q' "$1")" 1>&2
+        exit 1
+    fi
+
+    eval "envvar_set=\${$envvar+y}"
+    eval "envvar_val=\${$envvar-}"
+
+    if [ -n "$envvar_set" ] ; then
+        printf 'export %s=%q\n' "$envvar" "$envvar_val"
+    else
+        echo unset "$envvar"
+    fi
+
+    shift
+done

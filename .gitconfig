@@ -33,6 +33,9 @@
 	smudge = git lfs smudge %f
 	required = true
 
+[init]
+	defaultBranch = main
+
 [merge]
 	defaultToUpstream = true
 	tool = vimdiff
@@ -43,11 +46,6 @@
 
 [push]
 	default = simple
-
-[user]
-	name = Palotás Boldizsár
-	email = boldizsar.palotas@gmail.com
-	useConfigOnly = true
 
 # Allow local customizations in the .gitconfig_local file
 [include]

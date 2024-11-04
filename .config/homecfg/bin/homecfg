@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+set -eu
+
+[ $# -eq 0 ] && set show HOMECFG HOMECFG_SHELL
+
+homecfg_cmd="homecfg-$1"
+shift
+
+if command -v "$homecfg_cmd" >/dev/null 2>&1 ; then
+    exec "$homecfg_cmd" "$@"
+else
+    echo "$homecfg_cmd: not found" 1>&2
+    exit 1
+fi

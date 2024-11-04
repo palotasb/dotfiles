@@ -1,7 +1,10 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
-# Source stuff common to all shells
-. ~/.config/shell/all.sh
+# Sourced after .zshenv during zsh interactive startup.
+# https://zsh.sourceforge.io/Doc/Release/Files.html#Files
 
-# Source bash-specific stuff
-. ~/.config/zsh/all.zsh
+export HOMECFG="${HOMECFG:-${XDG_CONFIG_HOME:-${HOME?unset}/.config}/homecfg}"
+export HOMECFG_SHELL=zsh
+
+. "$HOMECFG/interactive-rc.zsh"
+. "$HOMECFG/interactive-rc.sh"

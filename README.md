@@ -27,7 +27,7 @@
 * [`.pythonrc.py`](.pythonrc.py): sourced for interactive Python REPL
 * [`.tmux.conf`](.tmux.conf): tmux configuration
 * [`.vimrc`](.vimrc): vim configuration
-* [`.zshrc`](.zshrc): sourced for non-logi interactive zsh
+* [`.zshrc`](.zshrc): sourced for non-login interactive zsh
 * [`README.md`](README.md): this file
 
 ## Setup on existing machines

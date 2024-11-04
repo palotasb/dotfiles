@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+set -eu
+
+for _editor in "code --wait" "vim" "vi" "nano" "ed" ; do
+    if command -v "${_editor%% *}" 2>&1 >/dev/null ; then
+        exec $_editor "$@"
+    fi
+done

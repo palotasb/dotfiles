@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+set -eu
+
+if [ $# -ge 1 ] && [ "${1-}" != "" ] ; then
+    homecfg eval export AWS_PROFILE="$(printf '%q' "$1")"
+elif [ $# -ge 1 ] ; then
+    homecfg eval unset AWS_PROFILE
+else
+    exec homecfg show AWS_PROFILE
+fi

@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+if ! command -v open 2>&1 >/dev/null ; then
+    echo "open not found (maybe not a Mac?)" 1>&2
+    exec man "$@"
+elif ! command -v ps2pdf 2>&1 >/dev/null ; then
+    echo "ps2pdf not found (maybe ghostscript is not installed?)" 1>&2
+    exec man "$@"
+else
+    tempdir="$(mktemp -d)"
+    args="$*"
+    tempfile="$tempdir/${args##* } manpage.pdf"
+    man -t "$@" | ps2pdf - >"$tempfile"
+    nohup \
+        sh -euxc \
+            'f="$1"; tmpdir="$2"; open -W "$f"; rm -rf "$tmpdir"' \
+            -s "$tempfile" "$tempdir" \
+            >/dev/null 2>&1 &
+fi
